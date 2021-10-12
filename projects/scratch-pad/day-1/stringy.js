@@ -27,8 +27,8 @@ function length(string) {
  */
 function toLowerCase(string) {
     // YOUR CODE BELOW HERE //
-//force string to lower case using .toLowerCase()//
 
+//force string to lower case using .toLowerCase()//
     return string.toLowerCase();
 
 
@@ -197,6 +197,7 @@ function sortAscending(stringOne, stringTwo) {
     // YOUR CODE BELOW HERE //
 /**a = 1 & z = 26, therefore if stringOne is less than stringTwo, stringOne 
  * will be higher alphabetically. And vice versa*/
+
 if(stringOne < stringTwo){
     return 1;
 } else if(stringOne > stringTwo){

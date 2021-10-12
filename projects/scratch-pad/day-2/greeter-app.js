@@ -35,7 +35,22 @@
 
 function greeter(hour) {
     // YOUR CODE BELOW HERE //
-    
+
+    //write an if-else-if chain block to test if hours are morning/afternoon/evening
+    if(hour >= 0 && hour <= 11){ //use && to compare all hours between 0 & 11
+        console.log("Good Morning!"); //console log message in correct string form
+
+    } else if(hour >= 12 && hour <= 16){ //cont using logical && operator to look for hour range
+        console.log("Good Afternoon!");
+
+    } else if(hour >= 17 && hour <= 21){
+        console.log("Good Evening!");
+
+/**final condition doesn't need written condition because it defaults when all other conditions 
+ * have not been met */
+    } else { 
+        console.log("Good Night!"); 
+    }
     
     
     

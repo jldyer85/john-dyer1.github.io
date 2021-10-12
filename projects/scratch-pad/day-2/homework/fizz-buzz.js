@@ -12,7 +12,20 @@
 */
 function fizzBuzz() {
     // YOUR CODE GOES BELOW HERE //
+//write for loop that will start at 1 and end at 100
+for(var i = 1; i < 101; i++){
 
+    //write if-else-if conditions with logical operators to meet the conditions in test
+    if(i % 3 === 0 && i % 5 === 0){ //use modulo to find numbers that divide by 3 & 5 with remainder 0
+        console.log("FizzBuzz");
+    } else if(i % 3 === 0){
+        console.log("Fizz");
+    } else if(i % 5 === 0){
+        console.log("Buzz");
+    } else {
+        console.log(i);
+    }
+}
 
 
     // YOUR CODE GOES ABOVE HERE //

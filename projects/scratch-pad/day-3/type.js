@@ -14,7 +14,12 @@
  */
 function isArray(value) {
     // YOUR CODE BELOW HERE //
-    
+    //use Array.isArray method to test if value is an arr & return boolean
+    if(Array.isArray(value)){
+        return true;
+    } else {
+        return false;
+    }
     
     
     
@@ -31,7 +36,18 @@ function isArray(value) {
  */
 function isObject(value) {
     // YOUR CODE BELOW HERE //
-    
+    //use if-else-if chain to check if object is null, Array, or Date
+    if(Array.isArray(value)){
+        return false;
+    } else if(typeof(value) === null){
+        return false;
+    } else if(typeof(value) === Date){
+        return false;
+    } else if(typeof(value) === Object){
+        return true;
+    } else {
+        return false;
+    }
     
     
     
