@@ -36,18 +36,21 @@ function isArray(value) {
  */
 function isObject(value) {
     // YOUR CODE BELOW HERE //
-    //use if-else-if chain to check if object is null, Array, or Date
+    //check if value is array, null, or date and return false
     if(Array.isArray(value)){
         return false;
-    } else if(typeof(value) === null){
+    } else if(value === null){
         return false;
-    } else if(typeof(value) === Date){
+    } else if(value instanceof Date){
         return false;
-    } else if(typeof(value) === Object){
+    //else if typeof value is object return true
+    } else if(typeof value === 'object'){
         return true;
+    //default else return false
     } else {
         return false;
     }
+
     
     
     
@@ -62,7 +65,18 @@ function isObject(value) {
  */
 function isCollection(value) {
     // YOUR CODE BELOW HERE //
-    
+    //check if type of value is date or null, return false
+    if(value instanceof Date){
+        return false;
+    } else if(value === null){
+        return false;
+    //else if type is an array or object return true
+    } else if(Array.isArray(value) || typeof value === 'object'){
+        return true;
+    //default return false for all other datatypes
+    } else {
+        return false;
+    }
     
     
     
@@ -90,7 +104,19 @@ function isCollection(value) {
  */ 
 function typeOf(value) {
     // YOUR CODE BELOW HERE //
-    
+    //use Array.isArray to return string array if value is arr
+    if(Array.isArray(value)){
+        return 'array'
+    //use instanceof Date to return string of date if value is date
+    } else if(value instanceof Date){
+        return "date"
+    //if value equals null return string null
+    } else if(value === null){
+        return "null"
+    //else return typeof value which will auto return string datatype
+    } else {
+        return typeof value;
+    }
     
     
     

@@ -23,9 +23,23 @@
  */
 function range(start, end) {
     // YOUR CODE GOES BELOW HERE //
-    
-    
-    
+   //create new array to collect result
+   var result = []; 
+
+   //create if statement to compare if start is > or < end
+    if(start < end){
+        //run loop from start to end and push into result
+        for(var i = start; i <= end; i++){
+            result.push(i);
+        } 
+    //but if start > end, run loop in reverse and push into result
+    } else if (start > end){
+        for(var i = start; i >= end; i--){
+            result.push(i);
+    }
+  }
+    //return result array of range of integers
+    return result;
     
     // YOUR CODE GOES ABOVE HERE //
 }
