@@ -13,12 +13,33 @@
 // Step 1 - Search ///////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
+function search(animals, name){
+    //loop through animals array
+    for(var i = 0; i < animals.length; i++){
+        //access animal obj name key and compare to name arg
+        if(animals[i]["name"] === name){
+            //return animal obj if equal
+            return animals[i]
+        } 
+    }
+    //return null outside of loop block so that it iterates through entirety
+    return null;
+}
 
 
 //////////////////////////////////////////////////////////////////////
 // Step 2 - Replace //////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
+function replace(animals, name, replacement){
+    //loop through array to compare animals obj name to name arg
+    for(var i = 0; i < animals.length; i++){
+    //if name matches return replace animal obj with replacement arg using replace()
+        if(animals[i]["name"] === name){
+            return animals[i] = replacement;
+        }
+    }
+}
 
 
 //////////////////////////////////////////////////////////////////////

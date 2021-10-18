@@ -55,7 +55,7 @@ As we code, save and refresh the browser tab running Matchy. Your work will begi
  1. [ ] Create a variable named `noises` and assign it to an empty array.
  2. [ ] Using **bracket notation** give `noises` it's first element. A string representing a sound your animal might make.
  3. [ ] Using an array function add another noise to the end of `noises`.
- 4. [ ] Go to the array documentation: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array?redirectlocale=en-US
+ 4. [ ] Go to the array documentation: 
  5. [ ] Look through the functions until you find the one that will place an element at the begining of the array.
  6. [ ] Add an element to `noises` using this function.
  7. [ ] Using **bracket syntax** again, add another element to the end of `noises`. Make sure that the way you do this step would work no matter how many elements `noises` had. In other words, don't hard code the position of the new element.
