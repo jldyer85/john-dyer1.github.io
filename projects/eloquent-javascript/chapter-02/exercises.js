@@ -4,9 +4,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 function triangles(num) {
-  for(var i = "#"; i <= num; i += "#"){
-    console.log(num[i]);
-  }
+  //for loop that assigns var line that starts at # and ends at num, increment line + #
+  for (var line = "#"; line.length <= num; line += "#")
+  console.log(line);
 
 }
 ////////////////////////////////////////////////////////////////////////////////
@@ -41,9 +41,22 @@ function fizzBuzz() {
 // drawChessboard //////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function drawChessboard() {
+function drawChessboard(num) {
+  var size = num;
+  var board = "";
 
+  for(var x = 0; x <= size; x++){
+    for(var y = 0; y <= size; y++){
+      if((x +y) % 2 === 0){
+        board += " ";
+      } else {
+        board += "#";
+      }
+    }
+    board += "\n";
+  }
 }
+console.log(board);
 
 ////////////////////////////////////////////////////////////////////////////////
 // DON'T REMOVE THIS CODE //////////////////////////////////////////////////////

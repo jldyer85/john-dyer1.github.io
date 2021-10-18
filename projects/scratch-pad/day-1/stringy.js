@@ -199,9 +199,9 @@ function sortAscending(stringOne, stringTwo) {
  * will be higher alphabetically. And vice versa*/
 
 if(stringOne < stringTwo){
-    return -1;
-} else if(stringOne > stringTwo){
     return 1;
+} else if(stringOne > stringTwo){
+    return -1;
 } else {
     return 0;
 }
@@ -223,9 +223,9 @@ function sortDescending(stringOne, stringTwo) {
 /**a === 1 & z === 26, therefore if stringOne is greater than stringTwo, stringOne 
  * will be lower alphabetically. And vice versa*/
 if(stringOne > stringTwo){
-    return -1;
-} else if(stringOne < stringTwo){
     return 1;
+} else if(stringOne < stringTwo){
+    return -1;
 } else {
     return 0;
 }

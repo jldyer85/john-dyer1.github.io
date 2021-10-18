@@ -73,7 +73,8 @@ function makeContactList() {
             }
         },
         removeContact: function(contact){
-            return contacts.pop();
+            //use pop method to remove contact from contacts array
+            return contacts.pop(contact);
         },
         //printAllNames from contacts list in string with new line for each name
         printAllContactNames: function(){
