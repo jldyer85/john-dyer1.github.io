@@ -20,7 +20,7 @@ function search(animals, name){
         if(animals[i]["name"] === name){
             //return animal obj if equal
             return animals[i]
-        } 
+        }
     }
     //return null outside of loop block so that it iterates through entirety
     return null;
@@ -35,7 +35,7 @@ function replace(animals, name, replacement){
     //loop through array to compare animals obj name to name arg
     for(var i = 0; i < animals.length; i++){
     //if name matches return replace animal obj with replacement arg using replace()
-        if(animals[i]["name"] === name){
+        if(animals[i].name === name){
             return animals[i] = replacement;
         }
     }
@@ -46,12 +46,27 @@ function replace(animals, name, replacement){
 // Step 3 - Remove ///////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
-
+function remove(animals, name){
+    for(let i = 0; i < animals.length; i++){
+        if(animals[i]["name"] === name){
+            animals.splice(animals[i]);
+        }
+    }
+}
 
 //////////////////////////////////////////////////////////////////////
 // Step 4 - Add ///////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
+function add(animals, animal){
+    for(var i = 0; i < animals.length; i++){
+        for(var key in animal){
+            if(animal.name.length > 0 && animal.species.length > 0 && animal.name === animals[i].name){
+                animals.splice(animal)
+            } 
+        }
+    }
+}
 
 
 /**
