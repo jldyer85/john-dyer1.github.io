@@ -3,7 +3,16 @@
 //////////////////////////////////////////////////////////////////////
 
 function objectValues(object) {
+    //declare an empty array to store values
+    var result = [];
 
+    //loop through object & push values into result array
+    for(var key in object){
+        result.push(object[key]);
+    };
+
+    //return result
+    return result;
 } 
 
 //////////////////////////////////////////////////////////////////////
@@ -11,6 +20,7 @@ function objectValues(object) {
 //////////////////////////////////////////////////////////////////////
 
 function keysToString(object) {
+ return Object.keys(object).join(" ");
 
 }
 

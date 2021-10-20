@@ -47,8 +47,10 @@ function replace(animals, name, replacement){
 //////////////////////////////////////////////////////////////////////
 
 function remove(animals, name){
+    //loop through animals array to access each element
     for(let i = 0; i < animals.length; i++){
-        if(animals[i]["name"] === name){
+        //if animals object name matches name argument, remove it using splice
+        if(animals[i]["name"] !== name){
             animals.splice(animals[i]);
         }
     }
@@ -59,14 +61,19 @@ function remove(animals, name){
 //////////////////////////////////////////////////////////////////////
 
 function add(animals, animal){
-    for(var i = 0; i < animals.length; i++){
-        for(var key in animal){
-            if(animal.name.length > 0 && animal.species.length > 0 && animal.name === animals[i].name){
-                animals.splice(animal)
-            } 
+    
+    var nameMatches = false; //create a boolean flag variable to test names
+    for(var i = 0; i < animals.length; i++){ //loop through animals array
+        if(animals[i].name === animal.name){ //if name equals animal obj name return true
+            nameMatches = true;
+            }
         }
-    }
-}
+        //if nameMatches is false & animalObj name & species length greater than 0
+        if(nameMatches !== true && animal.name.length > 0 && animal.species.length > 0){
+            animals.push(animal); //push animalObj into animals arr
+        }
+    };
+
 
 
 /**
