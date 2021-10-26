@@ -2,8 +2,11 @@
 // range ///////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function range(start, end, step = start < end ? 1 : -1) {
+function range(start, end, step) {
   var array = [];
+  for(var i = start; i <= end; i++){
+    array.push(i)
+  }
   
 
   return array;
@@ -13,10 +16,10 @@ function range(start, end, step = start < end ? 1 : -1) {
 // sum /////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function sum(start, end, step) {
+function sum(array) {
   let sumResult = 0;
-  for(var i = start; i < end; i++){
-    sumResult += i;
+  for(var i = 0; i < array.length; i++){
+    sumResult += array[i];
   }
   return sumResult;
 }
@@ -25,8 +28,16 @@ function sum(start, end, step) {
 // reverseArray ////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function reverseArray() {
+function reverseArray(array) {
+  //create array to store results
+  var result = [];
+  //loop through array in reverse
+  for(var i = array.length - 1; i >= 0; i--){
+    //push each iteration into result array
+    result.push(array[i]);
+  }
 
+  return result;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -41,7 +52,7 @@ function reverseArrayInPlace() {
 // arrayToList /////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function arrayToList() {
+function arrayToList(arr) {
 
 }
 

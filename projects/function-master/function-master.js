@@ -30,17 +30,24 @@ function keysToString(object) {
 //////////////////////////////////////////////////////////////////////
 
 function valuesToString(object) {
+    //create string to store string values in
     var objValues = "";
+
+    //loop through object
     for(var key in object){
+
+        //check for which values are strings
         if(typeof object[key] === "string"){
-            objValues += object[key].split(" ");
+
+            //add each string value to objValues empty string w/ a space after each
+            objValues += object[key] + " ";
         }
-    };
-  return objValues;
-    // var valueStr = objValues.toString();
+    }
+    //assign objValues to remove final character in string to delete last "space"
+    objValues = objValues.slice(0, -1);
 
-    // return valueStr;
-
+    //return the final result
+    return objValues;
 }
 
 
@@ -49,8 +56,11 @@ function valuesToString(object) {
 //////////////////////////////////////////////////////////////////////
 
 function arrayOrObject(collection) {
+    //check if collection is array
     if(Array.isArray(collection)){
         return "array"
+
+        //else if check if collection is an object
     } else if(typeof collection === "object"){
         return "object"
     }
@@ -72,14 +82,15 @@ function capitalizeWord(string) {
 //////////////////////////////////////////////////////////////////////
 
 function capitalizeAllWords(string) {  
-
+    //split string of words into an array using split method separated w/ space
     var stringSplit = string.split(" ");
   
-  
+  //loop through split array and assign each iteration to uppercase
     for(var i = 0; i < stringSplit.length; i++){
-      return stringSplit[i][0].toUpperCase() + stringSplit[i].slice(1);
+      stringSplit[i] = stringSplit[i][0].toUpperCase() + stringSplit[i].slice(1);
     }
-    
+    //return the split string and join with a space.
+    return stringSplit.join(" ");
   }
 
 //////////////////////////////////////////////////////////////////////
@@ -88,6 +99,7 @@ function capitalizeAllWords(string) {
 
 function welcomeMessage(object) {
 
+    //return "Welcome" + name from object using interpolation and uppercase
     return `Welcome ${object.name[0].toUpperCase() + object.name.slice(1)}!`
 }
 
@@ -96,6 +108,7 @@ function welcomeMessage(object) {
 //////////////////////////////////////////////////////////////////////
 
 function profileInfo(object) {
+
     //interpolate object name + "is a " and object species with first letter capitalized
     return `${object.name[0].toUpperCase() + object.name.slice(1)} is a ${object.species[0].toUpperCase() + object.species.slice(1)}`
 }
@@ -120,6 +133,7 @@ function maybeNoises(object) {
 function hasWord(string, word) {
     //split string into an array separated by a space
     var splitString = string.split(" ");
+
     //loop through array and see if any iteration matches word arg
     for(var i = 0; i < splitString.length; i++){
         if(splitString[i] === word){
@@ -136,7 +150,7 @@ function hasWord(string, word) {
 
 function addFriend (name, object) {
     //push name into object's friends array
-    object.friends.push(name);
+    object["friends"].push(name);
 
     //return object
     return object;
@@ -147,13 +161,14 @@ function addFriend (name, object) {
 //////////////////////////////////////////////////////////////////////
 
 function isFriend(name, object) {
-    //if friends key doesn't exist, return false 
+    //if friends key doesn't exist, return false, must do this first before moving on to loop so 
+    //because why???
     if(!object.friends){
         return false;
     }
     //loop through objects friends array and if name matches name arg ret true
     for(var i = 0; i < object.friends.length; i++){
-        if(object.friends[i] === name){
+        if(object.friends[i].includes(name)){
             return true;
         } 
     }
@@ -166,6 +181,8 @@ function isFriend(name, object) {
 //////////////////////////////////////////////////////////////////////
 
 function nonFriends(name, array) {
+        var nameList = [];
+        var current = [];
 
     }
 
@@ -175,10 +192,10 @@ function nonFriends(name, array) {
 //////////////////////////////////////////////////////////////////////
 
 function updateObject(object, key, value) {
-    //assign key to value no matter what args are passed, that key becomes that val
-    object[key] = value;
+    //assign key to value so no matter what args are passed, that key becomes that val
+    object[key] = value; 
     
-    //return object with updated key: value;
+    //return object with updated key: value pair;
     return object;
 }
 
