@@ -180,12 +180,21 @@ function isFriend(name, object) {
 // Function 13 - Non-Friends /////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
-function nonFriends(name, array) {
-        var nameList = [];
-        var current = [];
+function nonFriends(name, array){
+    //
+    var result = [];
 
+    for(var i = 0; i < array.length; i++){
+        if(name !== array[i].name){
+            if(array[i].friends.includes(name) === false){
+                result.push(array[i].name)
+            }
+        }
     }
+    //return result
+    return result;
 
+}
 
 //////////////////////////////////////////////////////////////////////
 // Function 14 - Update Object ///////////////////////////////////////

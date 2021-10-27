@@ -73,16 +73,16 @@ _.typeOf = function(value){
 *   _.first(["a", "b", "c"], 2) -> ["a", "b"]
 */
 
-_.first = function(array, number) {
+_.first = function(collection, number) {
     let emptyArray = [];
-    if (Array.isArray(array) == false || Math.sign(number) == -1){
+    if (!Array.isArray(collection) || number < 0){
         return emptyArray;
-    } else if (typeof number == "undefined" || typeof number != "number"){
-        return array[0];
-    } else if (number > array.length) {
-        return array;
+    } else if (typeof number != "number"){
+        return collection[0];
+    } else if (number > collection.length) {
+        return collection;
     } else if (typeof number == "number"){
-        return array.splice(0, array.length - number + 1);
+        return collection.slice(0, number)
     }
     };
 
@@ -104,17 +104,17 @@ _.first = function(array, number) {
 *   _.last(["a", "b", "c"], 2) -> ["b", "c"]
 */
 
-_.last = function(array, num){
+_.last = function(collection, num){
     var emptyArr = [];
 
-    if(!Array.isArray(array) || Math.sign(num) == -1){
+    if(!Array.isArray(collection) || num < 0){
         return emptyArr;
-    } else if(typeof num === "undefined" || typeof num !== "number"){
-        return array[array.length - 1];
-    } else if (num > array.length){
-        return array;
+    } else if(typeof num !== "number"){
+        return collection[collection.length - 1];
+    } else if (num > collection.length){
+        return collection;
     } else if (typeof num === "number"){
-        return array.splice(array.length - num, num);
+        return collection.splice(collection.length - num, num);
     }
 }
 
@@ -192,13 +192,13 @@ _.each = function(collection, func){
             func(collection[i], i, collection);
         } 
         //but if collection is object
-        } else if (typeof collection === "object"){
-            //loop through the object to grab the key/value pairs
+        } else {
+            //assume collection is an object & loop through to grab the key/value pairs
             for(var key in collection){
                 //and call the test func with the value, key and object params
                 func(collection[key], key, collection)
             }
-    }
+        }
 }
 
 /** _.unique
@@ -210,21 +210,14 @@ _.each = function(collection, func){
 * Examples:
 *   _.unique([1,2,2,4,5,6,5,2]) -> [1,2,4,5,6]
 */
+    _.unique = function(array) {
+        var newArr = [];
+        for (var i = 0; i < array.length; i++)
+            if (newArr.indexOf(array[i]) === -1 && array[i] !== "")
+                newArr.push(array[i]);
+        return newArr;
+    };
 
-_.unique = function(array){
-    //create result var
-    var resultArr = [];
-
-    var result = _.indexOf(array, value)
-    resultArr.push(value);
-
-
-
-
-
-    //return result
-    return resultArr;
-}
 
 
 /** _.filter
@@ -253,7 +246,6 @@ _.filter = function(array, func){
             result.push(array[i]);
         }
     }
-
     //return result array
     return result;
 }
@@ -385,7 +377,7 @@ _.pluck = function(arrayOfObj, prop){
     //create result to call _.map func to store results
     var result = _.map(arrayOfObj, function(val){
         return val[prop];
-    })
+    });
 
     return result;
 }
@@ -413,23 +405,34 @@ _.pluck = function(arrayOfObj, prop){
 */
 
 _.every = function(collection, func){
+    if(typeof func !== "function"){
+        for(var i = 0; i < collection.length; i++){
+            if(!collection[i]){
+                return false;
+            }
+        }
+        return true;
+    }
         //check if collection is array or object
         if(Array.isArray(collection)){
             //if it's array, do a for loop to access it
             for(var i = 0; i < collection.length; i++){
                 //if func call is truthy return true
-                if(func(collection[i], i, collection)){
-                    return true;
+                if(!func(collection[i], i, collection)){
+                    return false;
                 } 
             }
-            //but if it's object do a for in loop to access key/value pairs
+            return true;
+
+        //but if it's object do a for in loop to access key/value pairs
         } else if (typeof collection === "object"){
             for(var key in collection){
                 //if func call is truthy, return true/
-                if(func(collection[key], key, collection)){
-                    return true;
+                if(!func(collection[key], key, collection)){
+                    return false;
                 }
             }
+            return true;
         }
 }
 
@@ -453,7 +456,42 @@ _.every = function(collection, func){
 *   _.some([1,3,5], function(e){return e % 2 === 0}) -> false
 *   _.some([1,2,3], function(e){return e % 2 === 0}) -> true
 */
+_.some = function(collection, func){
+    //check if func isn't a function
+    if(typeof func !== "function"){
+        //if not, loop through collection and return true if some element is truthy
+        for(var i = 0; i < collection.length; i++){
+            if(collection[i]){
+            return true;
+        }
+    }
+    //return false if all elements are falsy
+    return false;
+}
+    //check if collection is array or object
+    if(Array.isArray(collection)){
+        //if it's array, do a for loop to access it
+        for(var i = 0; i < collection.length; i++){
+            //if some func call is truthy return true
+            if(func(collection[i], i, collection)){
+                return true;
+            } 
+        }
+        //return false if all func calls are falsy
+        return false;
 
+    //but if it's object do a for in loop to access key/value pairs
+    } else if (typeof collection === "object"){
+        for(var key in collection){
+            //if some func call is truthy, return true/
+            if(func(collection[key], key, collection)){
+                return true;
+            }
+        }
+        //return false if all func calls are falsy
+        return false;
+    }
+}
 
 /** _.reduce
 * Arguments:
@@ -474,6 +512,28 @@ _.every = function(collection, func){
 *   _.reduce([1,2,3], function(previousSum, currentValue, currentIndex){ return previousSum + currentValue }, 0) -> 6
 */
 
+_.reduce = function(collection, func, seed){
+    //check if seed is not undefined
+    if(seed !== undefined){
+        //loop through collection
+        for(var i = 0; i < collection.length; i++){
+            //assign function call to seed for each iteration
+          seed = func(seed, collection[i], i);
+        }
+        //return seed
+        return seed;
+    } else {
+        //if seed is undefined assign it to first element of collection
+        seed = collection[0];
+        //loop through collection
+        for(var i = 1; i < collection.length; i++){
+            //assign seed to function call for each iteration
+            seed = func(seed, collection[i], i);
+    }
+    //return seed
+    return seed;
+    }
+}
 
 /** _.extend
 * Arguments:
@@ -489,6 +549,17 @@ _.every = function(collection, func){
 *   _.extend(data, {b:"two"}); -> data now equals {a:"one",b:"two"}
 *   _.extend(data, {a:"two"}); -> data now equals {a:"two"}
 */
+
+_.extend = function(obj1, obj2){
+    //assign all arguments to variable using Object.assign
+    var args = Object.assign(arguments);
+
+    //using Object.assign copy all args using spread operator
+    Object.assign(...args);
+
+    //return the first arg "object" that has all updated properties
+    return args[0];
+}
 
 //////////////////////////////////////////////////////////////////////
 // DON'T REMOVE THIS CODE ////////////////////////////////////////////
