@@ -84,7 +84,7 @@ _.first = function(collection, number) {
     } else if (typeof number == "number"){
         return collection.slice(0, number)
     }
-    };
+};
 
 /** _.last
 * Arguments:
@@ -163,7 +163,6 @@ _.indexOf = function(array, value){
 _.contains = function(array, value){
     //use .includes method to see if array holds the value
      return array.includes(value) ? true : false;
-    
 };
 
 
@@ -210,15 +209,13 @@ _.each = function(collection, func){
 * Examples:
 *   _.unique([1,2,2,4,5,6,5,2]) -> [1,2,4,5,6]
 */
-    _.unique = function(array) {
+    _.unique = function(collection) {
         var newArr = [];
-        for (var i = 0; i < array.length; i++)
-            if (newArr.indexOf(array[i]) === -1 && array[i] !== "")
-                newArr.push(array[i]);
+        for (var i = 0; i < collection.length; i++)
+            if (newArr.indexOf(collection[i]) === -1 && collection[i] !== "")
+                newArr.push(collection[i]);
         return newArr;
     };
-
-
 
 /** _.filter
 * Arguments:
@@ -355,9 +352,6 @@ _.map = function(collection, func){
             result.push(func(collection[key], key, collection))
         }
     }
-
-
-
     //return result
     return result;
 }
@@ -405,7 +399,7 @@ _.pluck = function(arrayOfObj, prop){
 */
 
 _.every = function(collection, func){
-    if(typeof func !== "function"){
+    if(!func){
         for(var i = 0; i < collection.length; i++){
             if(!collection[i]){
                 return false;
@@ -458,7 +452,7 @@ _.every = function(collection, func){
 */
 _.some = function(collection, func){
     //check if func isn't a function
-    if(typeof func !== "function"){
+    if(!func){
         //if not, loop through collection and return true if some element is truthy
         for(var i = 0; i < collection.length; i++){
             if(collection[i]){

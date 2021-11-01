@@ -5,13 +5,14 @@
  * mathematics.  When a variable is declared it is followed by the assignment operator = and then the variable declaration
  * follows it. Until a variable is declared, it holds no value.  The = operator allows us to declare values of variables.
  */
+
  var color; // => holds no value and is undefined.
  color = 'orange'; // => now holds value of the string 'orange' and will execute that string when called.
 
-/*
-* 1. ARITHMETIC Operators: arithmetic operators take operands to compute mathematical operations such as addition(+, +=), subtraction (- -=),
-* multiplication (*, *=), division(/ /=), exponents(**), modulus or remainder(% %=).
-*/
+/**
+ * 1. ARITHMETIC Operators: arithmetic operators take operands to compute mathematical operations such as addition(+, +=), subtraction (- -=),
+ * multiplication (*, *=), division(/ /=), exponents(**), modulus or remainder(% %=).
+ */
 
 var x = 2
 var y = 3
@@ -102,10 +103,11 @@ console.log(x < 6) // => prints true
 console.log(x <= 5) // => prints true
 console.log(x <= 6) // => prints true
 
-/* 
-* 3. LOGICAL Operators: Logical operators are used to determine the logic between variables or values. They are as follows with x equaling 10
-* and y equaling 15 for the examples:
-*/
+/**
+ * 3. LOGICAL Operators: Logical operators are used to determine the logic between variables or values. They are as follows with x equaling 10
+ * and y equaling 15 for the examples:
+ */
+
 var x = 10
 var y = 15
 
@@ -113,24 +115,49 @@ var y = 15
 console.log(x > 9 && y < 20) // => prints true
 console.log('10' == x && '20' == y) // => prints false
 
-/*The || logical operator compares 2 or more expressions and indicates that all either one OR the other expression must return a truthy value in 
-* order for it to execute*/
+/**
+ * The || logical operator compares 2 or more expressions and indicates that all either one OR the other expression must return a truthy value in 
+ * order for it to execute
+ */
+
 console.log(x > 12 || y < 20) // => prints true
 console.log('10' == x || '20' == y) // => prints true
 
 //The ! operator or bang operator acts as "not" thereby turning any value it precedes into a falsy. The !! operator or double bang
 
-/*
-* 4. UNARY Operators: The simplest operators in Javascript are unary operators because they use only one operand.  They are as follows:
-*/
+/**
+ *  4. UNARY Operators: The simplest operators in Javascript are unary operators because they use only one operand.  They are as follows:
+ */
 
-//The ++ unary operator when placed in front of its operand increments the value by one.
+//The ++ unary operator when placed in front of its operand increments the value by one. And the inverse is true for the -- operator.
 var y = 4
 console.log(++y); // => prints 5
 console.log(++y); // => prints 6
 
-//When ++ is placed be
-/*
-* 5. TERNARY Operators (a ? b : c)
-*/
+var x = 5;
+console.log(--x) // => prints 4
+console.log(--x) // => prints 3
 
+/**
+ * 5. BINARY Operator: When two operands are used, the operator is a binary operator
+ */
+
+var x = 3;
+var y = 5;
+
+console.log(x + y) // => prints 8
+
+//similarly you can use += or -= or *= or /= for each mathematical operation as so:
+
+console.log(x += y) // => prints 8
+
+/**
+ * 6. TERNARY Operator: When three operands are used we can use the ternary operator.  This is only used when we have a binary
+ * conditional that will either have a boolean return.  The syntax is as follows: condition ? true : false
+ * The return can be whatever we assign it but if the condition is truthy, the first return after the ? will resolve, and if the condtion
+ * is falsy, the second return after the : will resolve.
+ */
+
+8 > 7 ? true : false; //=> prints true
+
+10 > 5 ? "10 is greater than 5" : "That's incorrect" // => prints "10 is greater than 5"

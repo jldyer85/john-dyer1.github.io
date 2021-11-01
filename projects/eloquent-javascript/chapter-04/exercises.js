@@ -3,12 +3,23 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 function range(start, end, step) {
+  //create array to store results
   var array = [];
-  for(var i = start; i <= end; i++){
-    array.push(i)
+  //if start and end are same or step is negative return empty array
+  if(start === end || step < 0){
+    return array;
   }
-  
-
+  //if there is a step, loop through range of start end with i += step and push
+  if(step){
+    for(var i = start; i <= end; i+=step){
+      array.push(i)
+    }
+    //else loop through at i++ iteration and push into arr
+  } else {
+    for(var i = start; i <= end; i++){
+      array.push(i);
+    }
+  }
   return array;
 }
 
