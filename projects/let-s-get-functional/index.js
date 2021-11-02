@@ -138,14 +138,28 @@ var topThreeTags = function(array){
 };
 
 var genderCount = function(array){
-    var genderObj = _.reduce(array, function(prev, curr, i){
-        return {
-            male: prev.gender === "male",
-            female: prev.gender === "female",
-            nonbinary: prev.gender === "non-binary"
-        };
-    }, {})
-    return genderObj;
+  //count number of males, females, non binary
+  var males = array.filter(function(val, i, arr){
+    if(val.gender === "male"){
+        return val.gender
+    }
+  });
+  var females = array.filter(function(val, i, arr){
+    if(val.gender === "female"){
+        return val.gender
+    }
+  });
+  var nonBinary = array.filter(function(val, i, arr){
+    if(val.gender === "non-binary"){
+        return val.gender
+    }
+  });   
+//return object {male: 3, female: 4, non-binary: 1}
+return {
+  male: males.length,
+  female: females.length,
+  "non-binary": nonBinary.length
+}
 };
 
 //////////////////////////////////////////////////////////////////////

@@ -42,21 +42,15 @@ function fizzBuzz() {
 ////////////////////////////////////////////////////////////////////////////////
 
 function drawChessboard(num) {
-  var size = num;
   var board = "";
-
-  for(var x = 0; x <= size; x++){
-    for(var y = 0; y <= size; y++){
-      if((x +y) % 2 === 0){
-        board += " ";
-      } else {
-        board += "#";
-      }
-    }
-    board += "\n";
+  for(var i = 0; i < num; i++){
+   for(var a = 0; a < num; a++){
+    board += (a % 2) == (i % 2) ? " " : "#";
+   }
+   board += "\n";
   }
+  console.log(board);
 }
-console.log(board);
 
 ////////////////////////////////////////////////////////////////////////////////
 // DON'T REMOVE THIS CODE //////////////////////////////////////////////////////

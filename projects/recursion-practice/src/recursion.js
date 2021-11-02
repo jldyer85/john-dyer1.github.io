@@ -36,14 +36,12 @@ var arraySum = function(array) {
 // 4. Check if a number is even.
 var isEven = function(n) {
   //base case
-  if(n === 1){
-    return false;
-  } else if (n === 0){
+  if(n === 0){
     return true;
+  } else if (n === 1){
+    return false;
   }
-  //recursive call
-  return isEven(n - 2);
-
+    return isEven(n - 2);
 };
 
 // 5. Sum all integers below a given integer.
@@ -63,9 +61,15 @@ var sumBelow = function(n) {
 // 6. Get the integers in range (x, y).
 // Example:  range(2, 9);  // [3, 4, 5, 6, 7, 8]
 var range = function(x, y) {
-//base case
+  //base case
+  let r = [];
+  const step = x > y ? -1 : 1; // this determines if your range goes up or down
+  if(x === y) return [];
+  if(x === y - step) return r;
 
-//recursive call
+  //recursive call
+  return r.concat(x + step, range(x + step, y));
+
 };
 
 // 7. Compute the exponent of a number.
@@ -75,8 +79,17 @@ var range = function(x, y) {
 // https://www.khanacademy.org/computing/computer-science/algorithms/recursive-algorithms/a/computing-powers-of-a-number
 var exponent = function(base, exp) {
 //base case
-
+if(exp === 0){
+  return 1;
+}
+if(exp == 1){
+  return base;
+}
+if(exp < 0){
+  return 1 / (exponent(base, -1 * exp) )
+}
 //recursive call
+return base * exponent(base, exp - 1);
 
 };
 
@@ -86,22 +99,34 @@ var exponent = function(base, exp) {
 // powerOfTwo(10); // false
 var powerOfTwo = function(n) {
   //base case
+  var result = n / 2;
+  if (result < 1) {
+      return false;
+  } else if (result == 2) {
+      return true;
+  }
+  return powerOfTwo(result)
 
   //recursive call
 };
 
-// 9. Write a function that accepts a string a reverses it.
+// 9. Write a function that accepts a string and reverses it.
 var reverse = function(string) {
-//base case
-
-//recursive call
+  // Base case
+  if (string.length < 2) return string;
+  // Recursive case
+  return reverse(string.slice(1, string.length)) + string[0];
 };
 
 // 10. Write a function that determines if a string is a palindrome.
 var palindrome = function(string) {
-  //base case
+  if (string.length < 2) return true;
 
-  //recursive call
+  if (string[0] === string[string.length - 1]) {
+      return palindrome(string.slice(1, string.length - 1) );
+  }
+
+  return false;
 };
 
 // 11. Write a function that returns the remainder of x divided by y without using the
@@ -116,9 +141,11 @@ var modulo = function(x, y) {
 // JavaScript's Math object.
 // ATTENTION DO NOT LEAVE COMMENTS IN THIS FUNCTION. The test is looking for any ('/').
 var multiply = function(x, y) {
-  //base case
+  if(y === 0){
+    return 0;
+  }
 
-  //recursive call
+  return x + multiply(x, y - 1);
 };
 
 // 13. Write a function that divides two numbers without using the / operator  or
@@ -140,14 +167,24 @@ var gcd = function(x, y) {
 // compareStr('', '') // true
 // compareStr('tomato', 'tomato') // true
 var compareStr = function(str1, str2) {
+  if (str1.length === 1 && str2.length === 1) {
+    if (str1[0] === str2[0]) {
+        return true;
+    }
+}
+if (str1[0] === str2[0]) {
+  return true;
+} 
+
+return compareStr(str1.slice(1), str2.slice(1));
 };
 
 // 16. Write a function that accepts a string and creates an array where each letter
 // occupies an index of the array.
 var createArray = function(str){
   //base case
-
-  //recursive call
+ 
+  //recursive case
 };
 
 // 17. Reverse the order of an array
@@ -217,7 +254,10 @@ var fibonacci = function(n) {
 // nthFibo(3); // 2
 var nthFibo = function(n) {
   //base case
-
+  if(n < 0 ){
+    return null;
+  }
+ return n < 2 ? n : nthFibo(n-1) + nthFibo(n-2)
   //recursive call
 };
 
@@ -225,9 +265,12 @@ var nthFibo = function(n) {
 // var words = ['i', 'am', 'learning', 'recursion'];
 // capitalizedWords(words); // ['I', 'AM', 'LEARNING', 'RECURSION']
 var capitalizeWords = function(input) {
-  //base case
-
-  //recursive call
+  if (input.length === 1) {
+    return [input[0].toUpperCase()];
+  }
+  var result = capitalizeWords(input.slice(0, -1));
+  result.push(input.slice(input.length-1)[0].toUpperCase());
+  return result;
 };
 
 // 27. Given an array of strings, capitalize the first letter of each index.
@@ -295,7 +338,9 @@ var minimizeZeroes = function(array) {
 // alternateSign([-2,-7,8,3,-1,4]) // [2,-7,8,-3,1,-4]
 var alternateSign = function(array) {
   //base case
-
+  if(array[0]){
+    return 
+  }
   //recursive call
 };
 
