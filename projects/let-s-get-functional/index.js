@@ -83,42 +83,17 @@ var averageBalance = function(array){
 };
 
 var firstLetterCount = function(array, letter){
-    //using _.map create an array w/ all names from array
-    var names = _.map(array, function(val, i, arr){
-        return val.name;
-    })
-    //create var to store letter count
-    var letterCount = 0;
-    //using _.each compare first letter of each val in names array to letter arg
-    var firstLetter = _.each(names, function(val, i, arr){
-        //make each val and letter lowercase for case insensitivity
-        if(val[0].toLowerCase() === letter.toLowerCase()){
-            //add 1 to each letter count for each match
-            letterCount++;
+    var firstLetter = _.filter(array, function(val){
+        if(val.name[0].toLowerCase() === letter.toLowerCase()){
+            return val.name;
         }
     })
-    //return number 
-    return letterCount;
+    return firstLetter.length;
+
 };
 
 var friendFirstLetterCount = function(array, customer, letter){
-    //loop through array to customers friends array
-    for(var i = 0; i < array.length; i++){
-        if(array[i].name === customer){
-          var friendsList = array[i].friends
-        }
-    }
-    //create count variable
-    var count = 0;
-    //loop through customers friends array to check for first letter in name compared to letter
-    for(var k = 0; k < friendsList.length; k++){
-      if(friendsList[k].name[0].toLowerCase() === letter.toLowerCase()){
-          //add to count if match
-        count++
-      }
-    }
-    //return count;
-    return count;
+    //
 };
 
 var friendsCount = function(array, name){
@@ -132,34 +107,48 @@ var friendsCount = function(array, name){
 
 var topThreeTags = function(array){
     //create a variable with an array of tag arrays
-    var tagsArray = _.map(array, function(val, i, arr){
+    var tagsArray = _.map(array, function(val){
         return val.tags;
-    })
+    }).reduce(function(prev, curr){
+      return prev.concat(curr);
+    }, []);
+
+    // create obj to store key/value pairs of tags/occurrences
+    var obj = {};
+    //loop through tagsArray to create object w/ counts
+    for(var i = 0; i < tagsArray.length; i++){
+      if(obj[tagsArray[i]] !== undefined){
+        obj[tagsArray[i]] += 1;
+      } else{
+        obj[tagsArray[i]] = 1;
+      }
+    };
+    //return top3 keys in obj by using Object.entries, sort, map, & slice
+    return Object.entries(obj)
+    .sort((a, b) => b[1] - a[1])
+    .map(el =>el[0])
+    .slice(0, 3);
 };
 
 var genderCount = function(array){
-  //count number of males, females, non binary
-  var males = array.filter(function(val, i, arr){
-    if(val.gender === "male"){
-        return val.gender
-    }
-  });
-  var females = array.filter(function(val, i, arr){
-    if(val.gender === "female"){
-        return val.gender
-    }
-  });
-  var nonBinary = array.filter(function(val, i, arr){
-    if(val.gender === "non-binary"){
-        return val.gender
-    }
-  });   
+  //count number of males, females, non binary using reduce
+    var males = _.reduce(array, function(m, person){
+        return m + (person.gender === "male")
+    }, 0);
+
+    var females = _.reduce(array, function(f, person){
+        return f + (person.gender === "female")
+    }, 0);
+
+    var nonBinary = _.reduce(array, function(n, person){
+        return n + (person.gender === "non-binary")
+    }, 0);  
 //return object {male: 3, female: 4, non-binary: 1}
-return {
-  male: males.length,
-  female: females.length,
-  "non-binary": nonBinary.length
-}
+    return {
+        male: males,
+        female: females,
+        "non-binary": nonBinary //key with hypen needs to be coded as string
+    }
 };
 
 //////////////////////////////////////////////////////////////////////
