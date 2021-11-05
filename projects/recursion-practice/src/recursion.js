@@ -129,7 +129,7 @@ var palindrome = function(string) {
   if (string.length < 2) return true;
   
   if (string[0].toLowerCase() === string[string.length - 1].toLowerCase()) {
-      return palindrome(string.slice(1, string.length - 1).replace(/[\s]/, ));
+      return palindrome(string.slice(1, string.length - 1).replace(/[^0-9a-z]/gi, ""));
   }
   return false;
 };
@@ -175,20 +175,27 @@ var gcd = function(x, y) {
 // compareStr('tomato', 'tomato') // true
 
 var compareStr = function(str1, str2) {
-  if (str1.length === 1 && str2.length === 1) {
-    return true;
-}
-  if (str1[0] === str2[0]) {
-    return true;
+  if(str1[0] !== str2[0]){
+    return false;
+  }
+  if (str1.length === str2.length) {
+    if(str1[0] === str2[0]){
+      return true;
+    }
 } 
-
   return compareStr(str1.slice(1), str2.slice(1));
 };
 
 // 16. Write a function that accepts a string and creates an array where each letter
 // occupies an index of the array.
-var createArray = function(str, result = []){
+var createArray = function(str){
+  //base case 
+  if(str.length === 0){
+    return "";
+  }
 
+  return [(str[0]), ...createArray(str.slice(1))]
+  //recursive case
 };
 
 // 17. Reverse the order of an array
@@ -205,13 +212,13 @@ var reverseArr = function (array) {
 // 18. Create a new array with a given value and length.
 // buildList(0,5) // [0,0,0,0,0]
 // buildList(7,3) // [7,7,7]
-var buildList = function(value, length, r = []) {
+var buildList = function(value, length) {
   //base case
-  if(length === 0){
-    return r;
+  if(length === 1){
+    return value;
   }
   //recursive call
-  return r = value + buildList(length - 1);
+  return [value[0], ...buildList(length - 1)];
 };
 
 // 19. Count the occurence of a value inside a list.
@@ -298,8 +305,14 @@ var capitalizeWords = function(input) {
 // capitalizeFirst(['car', 'poop', 'banana']); // ['Car', 'Poop', 'Banana']
 var capitalizeFirst = function(array) {
   //base case
+  if(array.length === 0){
+    return array;
+  }
 
   //recursive call
+  
+  return capitalizeFirst(array.slice(1));
+
 };
 
 // 28. Return the sum of all even numbers in an object containing nested objects.
@@ -323,7 +336,17 @@ var flatten = function(arrays) {
 // letterTally('potato'); // {'p':1, 'o':2, 't':2, 'a':1}
 var letterTally = function(str, obj) {
   //base case
+  var current = str[0];
+  
+  if(str.length === 0){
+    return obj;
+  } else if (obj[current]){
+    obj[current] ++;
+  } else {
+    obj[current] = 1;
+  }
 
+  return letterTally(str.slice(1), obj)
   //recursive call
 };
 

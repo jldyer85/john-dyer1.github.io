@@ -93,14 +93,26 @@ var firstLetterCount = function(array, letter){
 };
 
 var friendFirstLetterCount = function(array, customer, letter){
-    //
+    //filter through array to get customer profile;
+    var friendsWith = _.filter(array, function(value){ 
+      if(value.name === customer){
+        return value
+      }
+  })
+  //map through customers profile to get their friend list
+  .map((val) => val.friends)
+  //flatten the friends array
+  .reduce((prev, curr) => prev.concat(curr), [])
+  //filter names that match letter arg, case sensitive
+  .filter(val => val.name[0].toLowerCase() === letter.toLowerCase());
+
+  //return length of results array
+  return friendsWith.length;
 };
 
 var friendsCount = function(array, name){
-    var friendsWith = _.filter(array, function(value, i, array){
-        if(name === value.friends.name){
-            return friendsWith;
-        }
+    var friendsWith = _.filter(array, function(value){
+        
     })
     return friendsWith;
 };
@@ -113,7 +125,7 @@ var topThreeTags = function(array){
       return prev.concat(curr);
     }, []);
 
-    // create obj to store key/value pairs of tags/occurrences
+    //create obj to store key/value pairs of tags/occurrences
     var obj = {};
     //loop through tagsArray to create object w/ counts
     for(var i = 0; i < tagsArray.length; i++){
@@ -143,6 +155,7 @@ var genderCount = function(array){
     var nonBinary = _.reduce(array, function(n, person){
         return n + (person.gender === "non-binary")
     }, 0);  
+
 //return object {male: 3, female: 4, non-binary: 1}
     return {
         male: males,
