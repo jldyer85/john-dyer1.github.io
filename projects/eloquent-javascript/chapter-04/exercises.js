@@ -56,12 +56,16 @@ function reverseArray(array) {
 ////////////////////////////////////////////////////////////////////////////////
 
 function reverseArrayInPlace(array) {
-  for (let i = 0; i < Math.floor(array.length / 2); i++) {
-    let old = array[i];
-    array[i] = array[array.length - 1 - i];
-    array[array.length - 1 - i] = old;
-  }
-  return array;
+  var result = [];
+
+for(var i = array.length -1; i >= 0; i-- ){
+  result.push(array[i])
+}
+
+for(var j = 0; j < result.length; j++){
+  array[j] = result[j]
+}
+return result;
 }
 
 ////////////////////////////////////////////////////////////////////////////////

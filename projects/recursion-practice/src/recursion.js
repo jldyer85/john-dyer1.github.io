@@ -214,38 +214,35 @@ var reverseArr = function (array) {
 // buildList(7,3) // [7,7,7]
 var buildList = function(value, length) {
   //base case
-  if(length === 1){
-    return value;
+  if(length === 0){
+    return [];
   }
   //recursive call
-  return [value[0], ...buildList(length - 1)];
+  return [value].concat(buildList(value, length - 1));
 };
 
 // 19. Count the occurence of a value inside a list.
 // countOccurrence([2,7,4,4,1,4], 4) // 3
 // countOccurrence([2,'banana',4,4,1,'banana'], 'banana') // 2
-var countOccurrence = function(array, value, count = 0) {
-  //base case: return count once array length is 0;
-  if(array.length === 0){
-    return count
+var countOccurrence = function(array, value) {
+  //base case: return 0 once array length is 0;
+  if(!array.length){
+    return 0;
   }
   //recursive call
-  if(countOccurrence(array[0]) === value){
-    return count + 1
-  }
-  return count;
+  return (array[0] === value ? 1 : 0) + countOccurrence(array.slice(1), value)
 };
 
 // 20. Write a recursive version of map.
 // rMap([1,2,3], timesTwo); // [2,4,6]
-var rMap = function(array, callback, result = []) {
+var rMap = function(array, callback) {
   //base case
   if(array.length === 0){
-    return result;
-
+    return [];
   }
+
   //recursive call
-  
+  return [callback(array[0]), ... rMap(array.slice(1), callback)]
 };
 
 // 21. Write a function that counts the number of times a key occurs in an object.
@@ -305,13 +302,13 @@ var capitalizeWords = function(input) {
 // capitalizeFirst(['car', 'poop', 'banana']); // ['Car', 'Poop', 'Banana']
 var capitalizeFirst = function(array) {
   //base case
-  if(array.length === 0){
-    return array;
-  }
+if(array.length === 0){
+  return [];
+} else {
+//recursive call
+} return [array[0].charAt(0).toUpperCase().concat(array[0].slice(1)), 
+  ...capitalizeFirst(array.slice(1))]
 
-  //recursive call
-  
-  return capitalizeFirst(array.slice(1));
 
 };
 
@@ -334,10 +331,10 @@ var flatten = function(arrays) {
 
 // 30. Given a string, return an object containing tallies of each letter.
 // letterTally('potato'); // {'p':1, 'o':2, 't':2, 'a':1}
-var letterTally = function(str, obj) {
+var letterTally = function(str, obj = {}) {
   //base case
   var current = str[0];
-  
+
   if(str.length === 0){
     return obj;
   } else if (obj[current]){
@@ -355,11 +352,18 @@ var letterTally = function(str, obj) {
 // elements should not be changed.
 // Example: compress([1, 2, 2, 3, 4, 4, 5, 5, 5]) // [1, 2, 3, 4, 5]
 // Example: compress([1, 2, 2, 3, 4, 4, 2, 5, 5, 5, 4, 4]) // [1, 2, 3, 4, 2, 5, 4]
-var compress = function(list) {
-  //base case
-
-
-  //recursive call
+var compress = function(list, result = []) {
+  if (list.length === 0) {
+      return result;
+  } 
+  if (list.length === 1) {
+      result.push(list[0]);
+      return result;
+  }
+  if (list[0] !== list[1]) {
+      result.push(list[0])
+  }
+  return compress(list.slice(1), result);
 };
 
 // 32. Augment every element in a list with a new value where each element is an array
@@ -371,10 +375,22 @@ var augmentElements = function(array, aug) {
 // 33. Reduce a series of zeroes to a single 0.
 // minimizeZeroes([2,0,0,0,1,4]) // [2,0,1,4]
 // minimizeZeroes([2,0,0,0,1,0,0,4]) // [2,0,1,0,4]
-var minimizeZeroes = function(array) {
+var minimizeZeroes = function(array, result = []) {
   //base case
+  if(array.length === 0){
+    return result;
+  }
 
-  //recursive call
+  if (array[0] !== 0) {
+    result.push(array[0]);
+    return minimizeZeroes(array.slice(1), result);
+}
+
+if (array[0] !== array[1]) {
+    result.push(array[0]);
+    return minimizeZeroes(array.slice(1), result);
+}
+return minimizeZeroes(array.slice(1), result);
 };
 
 // 34. Alternate the numbers in an array between positive and negative regardless of
@@ -383,19 +399,31 @@ var minimizeZeroes = function(array) {
 // alternateSign([-2,-7,8,3,-1,4]) // [2,-7,8,-3,1,-4]
 var alternateSign = function(array) {
   //base case
-  if(array[0]){
-    return 
+  if(array.length === 0){
+    return [];
+  } else {
+    return [Math.abs(array[0]), -Math.abs(array[1]), ...alternateSign(array.slice(2))]
   }
-  //recursive call
 };
 
 // 35. Given a string, return a string with digits converted to their word equivalent.
 // Assume all numbers are single digits (less than 10).
 // numToText("I have 5 dogs and 6 ponies"); // "I have five dogs and six ponies"
-var numToText = function(str) {
+var numToText = function(str, returnStr = "") {
+  var nums = {1: "one", 2: "two", 3: "three", 4: "four", 5: "five", 6: "six", 7: "seven", 8: "eight", 9: "nine"}
   //base case
-
+  if(str.length === 0){
+    return returnStr;
+  };
   //recursive call
+  //if current val is not a digit num add the curr val to the return str default
+  if(!Object.keys(nums).includes(str[0])){
+    returnStr += str[0]
+  } else {
+    var newStr = nums[str[0]] + str.slice(1)
+    return numToText(newStr, returnStr);
+  }
+  return numToText(str.slice(1), returnStr);
 };
 
 // *** EXTRA CREDIT ***

@@ -3,10 +3,11 @@
 // /////////////////////////////////////////////////////////////////////////////
 
 function flatten(arrays) {
-  var oneArr = arrays.reduce(function(prev, curr, seed){
-      return prev.concat(curr);
+  var flatArr = arrays.reduce(function(prev, curr){
+      prev = [...prev, ...curr];
+      return prev;
   }, []);
-  return oneArr;
+  return flatArr;
 }
 
 // /////////////////////////////////////////////////////////////////////////////

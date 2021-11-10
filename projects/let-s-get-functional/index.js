@@ -110,12 +110,20 @@ var friendFirstLetterCount = function(array, customer, letter){
   return friendsWith.length;
 };
 
-var friendsCount = function(array, name){
-    var friendsWith = _.filter(array, function(value){
-        
-    })
-    return friendsWith;
-};
+var friendsCount = function(array, customer){
+    //filter through array of objects
+        var friendsWith = _.filter(array, function(profile){
+          //loop through each filtered iterations friends array
+          for(var i = 0; i < profile.friends.length; i++){
+            //if customer is in friends list...
+            if(profile.friends[i].name === customer){
+              //return profile's name
+              return true;
+            }
+          }
+  }).map(customer => customer.name);
+      return friendsWith;
+  };
 
 var topThreeTags = function(array){
     //create a variable with an array of tag arrays
@@ -133,35 +141,32 @@ var topThreeTags = function(array){
         obj[tagsArray[i]] += 1;
       } else{
         obj[tagsArray[i]] = 1;
-      }
+      };
     };
     //return top3 keys in obj by using Object.entries, sort, map, & slice
     return Object.entries(obj)
+    //sort entries in descending order by their numbers (index 1)
     .sort((a, b) => b[1] - a[1])
+    //map the elements in array and return the tags (index 0)
     .map(el =>el[0])
+    //slice a copy of top 3 elements in array
     .slice(0, 3);
 };
 
 var genderCount = function(array){
-  //count number of males, females, non binary using reduce
-    var males = _.reduce(array, function(m, person){
-        return m + (person.gender === "male")
-    }, 0);
-
-    var females = _.reduce(array, function(f, person){
-        return f + (person.gender === "female")
-    }, 0);
-
-    var nonBinary = _.reduce(array, function(n, person){
-        return n + (person.gender === "non-binary")
-    }, 0);  
-
-//return object {male: 3, female: 4, non-binary: 1}
-    return {
-        male: males,
-        female: females,
-        "non-binary": nonBinary //key with hypen needs to be coded as string
-    }
+    //reduce genders into object
+    var genders = _.reduce(array, function(genderObj, customer){
+        //if genderobj doesn't exist, create it
+        if(!genderObj[customer.gender]){
+            genderObj[customer.gender] = 1;
+            //else add 1 to existing gender key.
+        } else {
+            genderObj[customer.gender] += 1;
+        }
+        //return genderObj
+        return genderObj;
+    }, {})
+    return genders;
 };
 
 //////////////////////////////////////////////////////////////////////
