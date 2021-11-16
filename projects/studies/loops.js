@@ -8,12 +8,16 @@
  * The For Loop is used to loop through arrays a number of times and is given a starting point, an ending point, and an 
  * increment value for how many iterations it should loop through before moving on to the next value in the object. The loop 
  * will stop when the first false condition is met. The syntax is as follows:
+ * keyword "for" followed by open parantheses (a starting point, and ending point, and an increment or update)followed by curly
+ * braces {} or for(start, end, increment){}
  */
- 
+
+//For Loop begins w/ keyword 'for', open parentheses, then a variable declaration starting point, a declared ending point, and finally an
+// update for how many increments will 'jump' each iteration. Then closed parentheses followed by open curly braces as seen below:
 for(var i = 0; i <= 15; i++)
 console.log(i); //=> prints ascending numbers 0 - 15
 
-//Loops can be iterated reversely by starting at the end point and incrementing down by 1 using --;
+//Loops can be iterated reversely by starting at the end point and incrementing down by 1 using -- or any downward step;
 for(var x = 15; x >= 0; x--)
 console.log(x) // => prints descending numbers 15 - 0
 
@@ -23,7 +27,7 @@ for(var i = 0; i < array.length; i++){
    console.log(array[i]); // => prints John Lewis Dyer
 }
 
-//To loop over an array in reverse order is same as reverse loop for numbers, but for starting point we use dot length
+//To loop over an array in reverse order is same as reverse loop for numbers, but for starting point we use dot length - 1;
 var arr =  ['loop', 'reverse', 'a'];
 for (var i = arr.length - 1; i >= 0; i--) { // => prints a reverse loop
   console.log(arr[i]);

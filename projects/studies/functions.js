@@ -20,7 +20,7 @@ console.log(addTwo(3, 5)) //calling this function prints => 8
  * parameters hold space in the function code block.  Arguments are other pieces of code that are being called to pass through 
  * the function and execute some type of action.
  * 
- * 3. Syntax for a NAMED functions is as follows:
+ * 3. Syntax for a NAMED functions or function DECLARATION is as follows:
  */
  
  function twoStrings(str1, str2){ // => the keyword function followed by the name for the function (it should represent something the func does)
@@ -28,7 +28,7 @@ console.log(addTwo(3, 5)) //calling this function prints => 8
  }
 
 /**
- * 4. Functions can alternately be assigned to a variable.  The syntax is as follows:
+ * 4. Functions can alternately be assigned to a variable. This is known as function EXPRESSION The syntax is as follows:
  */
  var times2 = function(num){ // => a variable is named and assigned to the function.
     return num * 2;
@@ -45,16 +45,21 @@ console.log(addTwo(3, 5)) //calling this function prints => 8
 * JavaScript has function scope: Each function creates a new scope. Variables defined inside a function are not accessible from outside the function.
 * Variables declared with var, let and const are similar when declared inside a function meaning they are all function scoped.
 */
+
+var suffix = "III"
+
 function myName(){
  var first = 'John';
  let middle = 'Lewis';
- const last = 'Dyer;' // => these 3 variables are all confined inside this function and cannot be called outside of it.
+ const last = 'Dyer;' // => these 3 variables are all confined inside this function and cannot be called outside of it because of BLOCK or FUNCTION SCOPE
+
+ //however var suffix can be called and reached inside of this function because it is in the GLOBAL SCOPE
 }
 
 /**
 *
-* 6. Closures: Functions form closures around the data they house. If an obj returned from a func and is
-* held in memory elsewhere (refereced), that closure stays ALIVE, and data can continue to exist in these
+* 6. Closures: Functions form closures around the data they house. If an object returned from a func and is
+* held in memory elsewhere (referenced), that closure stays ALIVE, and data can continue to exist in these
 * closures.
 */
 
